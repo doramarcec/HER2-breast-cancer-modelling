@@ -7,7 +7,7 @@ In this repository, I'll try to recreate a Boolean model constructed by [Buiga a
 ## 🧬 Regulatory mechanisms
 
 Based on the Buiga et a., (2018) paper and some of their subsequent work, the following regulatory mechanisms were identified:
-- Herceptin inhibits HER2
+- Trastuzumab inhibits HER2
 - HER2 activates ERK1/2
 - HER2 activates JNK1/2
 - HER2 activates P38
@@ -20,7 +20,7 @@ Based on the Buiga et a., (2018) paper and some of their subsequent work, the fo
 This can be rewritten using regulatory logic rules, with each protein, pharmacological compound or the outcome (e.g. Survival) existing as individual nodes, as below. 
 Node | Regulatory logic rule
 --- | ---
-HER2 | HER2<sup>t+1</sup> = not Herceptin<sup>t</sup>
+HER2 | HER2<sup>t+1</sup> = not Trastuzumab<sup>t</sup>
 ERK1/2 | ERK1/2<sup>t+1</sup> = HER2<sup>t</sup>
 JNK1/2 | JNK1/2<sup>t+1</sup> = HER2<sup>t</sup> or not DUSP16<sup>t</sup>
 P38 | P38<sup>t+1</sup> = HER2<sup>t</sup> or not DUSP16<sup>t</sup>
@@ -45,7 +45,7 @@ Note: boolean2 package (belonging to BooleanNet) can only be run using Python 2,
 
 Considering the model rules outlined above, we are going to define our HER2+ breast cancer model (prior to any treatment) as follows:
 ```
-print("Prior to Herceptin treatment when HER2 is ON:")
+print("Prior to Trastuzumab treatment when HER2 is ON:")
 
 model_definition = """
 
@@ -90,8 +90,12 @@ plt.savefig('Fig1-no-inhibitors.png')
 ```
 
 This generates the following heatmap. The green regions represent the active ("ON") state of the nodes on the Y-axis, whereas the red regions represent inactive ("OFF") states, over a course of 10 iterations, considered as arbitrary time points.<br/>
+
 ![Fig1-no-inhibitors](https://github.com/user-attachments/assets/4d1d28e3-37d6-4668-9ab6-11590cf72740)
 
+From this model simulation, we can see that the HER2+ breast cancer cell survival rate is quite high, as Survival node is active throughout all time points, representing a 100% survival rate. 
+
+## Trastuzumab 
 
 
 
